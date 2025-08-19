@@ -1,0 +1,34 @@
+name: Run scans
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    permissions:
+      actions: read
+      contents: write
+      packages: write
+      security-events: write
+      pull-requests: write
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'corretto'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Submit dependency snapshot (Gradle)
+        uses: gradle/actions/dependency-submission@v4
+        env:
+          DEPENDENCY_GRAPH_INCLUDE_CONFIGURATIONS: "(releaseCompile|runtime)Classpath" # Only include relevant configurations
