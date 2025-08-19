@@ -14,6 +14,8 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("io.netty:netty-codec-http2:4.1.123.Final")
+    implementation("commons-lang:commons-lang:2.6")
+
 }
 
 tasks.test {
