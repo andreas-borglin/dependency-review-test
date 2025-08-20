@@ -2,7 +2,6 @@ name: Run scans
 
 on:
   workflow_dispatch:
-  pull_request:
   push:
     branches:
       - main
@@ -33,10 +32,3 @@ jobs:
         uses: gradle/actions/dependency-submission@v4
         env:
           DEPENDENCY_GRAPH_INCLUDE_CONFIGURATIONS: "(releaseCompile|runtime)Classpath" # Only include relevant configurations
-
-      - name: 'Dependency Review'
-        uses: actions/dependency-review-action@v4
-        with:
-          retry-on-snapshot-warnings: true
-          retry-on-snapshot-warnings-timeout: 600
-          comment-summary-in-pr: always
