@@ -40,3 +40,11 @@ jobs:
           retry-on-snapshot-warnings: true
           retry-on-snapshot-warnings-timeout: 600
           comment-summary-in-pr: always
+
+      - name: Run Trivy scan (temporary workaround)
+        uses: aquasecurity/trivy-action@0.32.0
+        with:
+          scan-type: 'rootfs'
+          scanners: 'vuln'
+          severity: 'CRITICAL,HIGH,MEDIUM'
+          output-format: 'github'
