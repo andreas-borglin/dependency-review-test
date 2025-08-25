@@ -41,7 +41,7 @@ jobs:
       - name: Run Trivy scan (temporary workaround)
         uses: aquasecurity/trivy-action@0.32.0
         with:
-          scan-type: 'rootfs'
+          scan-type: 'fs'
           scanners: 'vuln'
           severity: 'CRITICAL,HIGH,MEDIUM'
           output: 'trivy-results.table'
