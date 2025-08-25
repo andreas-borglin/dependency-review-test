@@ -41,3 +41,10 @@ jobs:
           scanners: 'vuln'
           severity: 'CRITICAL,HIGH,MEDIUM'
           format: 'github'
+
+      -  run: |
+          while IFS= read -r line; do
+              if [[ $line == "┌"* ]]; then echo '```' >> $GITHUB_STEP_SUMMARY; fi
+              echo "$line" >> $GITHUB_STEP_SUMMARY
+              if [[ $line == *"┘" ]]; then echo '```' >> $GITHUB_STEP_SUMMARY; fi
+          done < "trivy-results.table"
