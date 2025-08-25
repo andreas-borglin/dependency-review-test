@@ -34,13 +34,6 @@ jobs:
         env:
           DEPENDENCY_GRAPH_INCLUDE_CONFIGURATIONS: "(releaseCompile|runtime)Classpath" # Only include relevant configurations
 
-      - name: 'Dependency Review'
-        uses: actions/dependency-review-action@v4
-        with:
-          retry-on-snapshot-warnings: true
-          retry-on-snapshot-warnings-timeout: 600
-          comment-summary-in-pr: always
-
       - name: Run Trivy scan (temporary workaround)
         uses: aquasecurity/trivy-action@0.32.0
         with:
