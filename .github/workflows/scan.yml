@@ -40,9 +40,10 @@ jobs:
           scan-type: 'rootfs'
           scanners: 'vuln'
           severity: 'CRITICAL,HIGH,MEDIUM'
-          format: 'github'
+          output: 'trivy-results.table'
 
-      -  run: |
+      - name: Write Trivy results as summary 
+        run: |
           while IFS= read -r line; do
               if [[ $line == "┌"* ]]; then echo '```' >> $GITHUB_STEP_SUMMARY; fi
               echo "$line" >> $GITHUB_STEP_SUMMARY
