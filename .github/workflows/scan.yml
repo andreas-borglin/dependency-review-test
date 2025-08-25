@@ -40,4 +40,4 @@ jobs:
           scan-type: 'rootfs'
           scanners: 'vuln'
           severity: 'CRITICAL,HIGH,MEDIUM'
-          output-format: 'github'
+          format: 'github'
